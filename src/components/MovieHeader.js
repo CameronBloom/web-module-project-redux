@@ -1,8 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) => {
+    return ({
+        appTitle: state.appTitle
+    })
+}
+
 const MovieHeader = (props) => {
-    const appTitle = "";
+    const { appTitle } = props;
     const displayFavorites = true;
     
     return(<div className="table-title">
@@ -19,4 +27,4 @@ const MovieHeader = (props) => {
     </div>);
 }
 
-export default MovieHeader;
+export default connect(mapStateToProps)(MovieHeader);
