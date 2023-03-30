@@ -13,7 +13,8 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": "latest",
+        // "ecmaVersion": "latest", => flagged as an eslint error
+        "ecmaVersion": 7,
         "sourceType": "module"
     },
     "plugins": [
