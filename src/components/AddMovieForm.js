@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { addMovie } from './../actions/movieActions';
+
 import { connect } from 'react-redux';
+import { addMovie } from '../actions/movieActions';
 
 import { Link, useHistory } from 'react-router-dom';
 
 const AddMovieForm = (props) => {
+    const { addMovie } = props;
+
     const { push } = useHistory();
 
+    // movie is an object with 5 properties
     const [movie, setMovie] = useState({
         title: "",
         director: "",
@@ -23,6 +27,12 @@ const AddMovieForm = (props) => {
     }
 
     const handleSubmit = (e) => {
+        // prevent a form refresh
+        e.preventDefault();
+        // addMovie needs movie information
+        addMovie(movie);
+        // redirect after delete via the destructured 'push' from useHistory
+        push("/movies")
     }
 
     const { title, director, genre, metascore, description } = movie;
@@ -67,4 +77,5 @@ const AddMovieForm = (props) => {
     </div>);
 }
 
-export default AddMovieForm;
+// there are no props to pass!
+export default connect(null, { addMovie })(AddMovieForm);

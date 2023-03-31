@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
 
 const FavoriteMovieList = (props) => {
     const favorites = [];
@@ -22,4 +23,5 @@ const FavoriteMovieList = (props) => {
 }
 
 
-export default FavoriteMovieList;
+// export default FavoriteMovieList;
+export default connect(null, {})(FavoriteMovieList);

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import { addMovie } from '../actions/movieActions';
+
 const mapStateToProps = (state) => {
     return ({
         appTitle: state.appTitle
