@@ -8,7 +8,7 @@ import { deleteMovie } from '../actions/movieActions';
 // initialize our state to props
 const mapStateToProps = (state) => {
     return ({
-        movies: state.movies
+        movies: state.movieReducer.movies
     })
 }
 
