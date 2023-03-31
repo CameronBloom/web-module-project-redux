@@ -2,8 +2,9 @@ import { TOGGLE_FAVORITES, ADD_FAVORITE, REMOVE_FAVORITE } from './../actions/fa
 
 const initialState = {
   arrFavorites: [
-    {title: "First Title", id: 1}, 
-    {title: "Second Title", id: 2}
+    {title: "First Title", id: 0}, 
+    {title: "Second Title", id: 1},
+    {title: "Third Title", id: 2}
   ],
   boolDisplay: true,
 }

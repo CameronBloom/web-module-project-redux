@@ -16,11 +16,13 @@ const mapStateToProps = (state) => {
 
 const FavoriteMovieList = (props) => {
     // destructure props
-    const { favorites, display, removeFavorite } = props
+    const { favorites, removeFavorite } = props
 
     // how do we get the id???
-    const handleRemoveFavorite = () => {
-        return null
+    // use an anonymous function during our mapping function to pass the item's movie.id
+    const handleRemoveFavorite = (passedId) => {
+        console.log(passedId);
+        removeFavorite(passedId);
     }
     
     return (<div className="col-xs savedContainer">
@@ -30,7 +32,7 @@ const FavoriteMovieList = (props) => {
                 return <div key={movie.id}>
                     <Link className="btn btn-light savedButton" to={`/movies/${movie.id}`}>
                         {movie.title}
-                        <span onClick={handleRemoveFavorite}><span class="material-icons">remove_circle</span></span>
+                        <span onClick={() => {handleRemoveFavorite(movie.id)}}><span className="material-icons">remove_circle</span></span>
                     </Link> 
                 </div>
             })

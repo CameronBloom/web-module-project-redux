@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 // import our action (automatically wrapped in dispatch)
 import { deleteMovie } from '../actions/movieActions';
-import { addFavorite } from '../actions/favoritesActions';
+import { addFavorite, removeFavorite } from '../actions/favoritesActions';
 
 // initialize our state to props
 const mapStateToProps = (state) => {
@@ -18,13 +18,15 @@ const mapStateToProps = (state) => {
 
 const Movie = (props) => {
     // pull in state values and functions from our connect function
-    const { movies, displayFavorites, deleteMovie, addFavorite } = props;
+    const { movies, displayFavorites, deleteMovie, addFavorite, removeFavorite } = props;
     const { id } = useParams();
     const { push } = useHistory();
 
     const movie = movies.find(movie => movie.id === Number(id));
     
     const handleDeleteMovie = () => {
+        // remove movie from favorites list if deleted...
+        removeFavorite(movie.id);
         // deleteMovie needs an id value
         deleteMovie(movie.id);
         // redirect after delete via the destructured 'push' from useHistory
@@ -44,7 +46,6 @@ const Movie = (props) => {
                 </div>
                 <div className="modal-body">
                     <div className="flexContainer">
-
                         <section className="movie-details">
                             <div>
                                 <label>Title: <strong>{movie.title}</strong></label>
@@ -75,4 +76,4 @@ const Movie = (props) => {
     </div>);
 }
 
-export default connect(mapStateToProps, { deleteMovie, addFavorite })(Movie);
+export default connect(mapStateToProps, { deleteMovie, addFavorite, removeFavorite })(Movie);
