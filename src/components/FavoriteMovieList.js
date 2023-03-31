@@ -4,8 +4,24 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import { removeFavorite } from '../actions/favoritesActions';
+
+
+const mapStateToProps = (state) => {
+    return ({
+        favorites: state.favoriteReducer.arrFavorites,
+        display: state.favoriteReducer.boolDisplay
+    })
+}
+
 const FavoriteMovieList = (props) => {
-    const favorites = [];
+    // destructure props
+    const { favorites, display, removeFavorite } = props
+
+    // how do we get the id???
+    const handleRemoveFavorite = () => {
+        return null
+    }
     
     return (<div className="col-xs savedContainer">
         <h5>Favorite Movies</h5>
@@ -14,7 +30,7 @@ const FavoriteMovieList = (props) => {
                 return <div key={movie.id}>
                     <Link className="btn btn-light savedButton" to={`/movies/${movie.id}`}>
                         {movie.title}
-                        <span><span class="material-icons">remove_circle</span></span>
+                        <span onClick={handleRemoveFavorite}><span class="material-icons">remove_circle</span></span>
                     </Link> 
                 </div>
             })
@@ -22,6 +38,4 @@ const FavoriteMovieList = (props) => {
     </div>);
 }
 
-
-// export default FavoriteMovieList;
-export default connect(null, {})(FavoriteMovieList);
+export default connect(mapStateToProps, { removeFavorite })(FavoriteMovieList);
